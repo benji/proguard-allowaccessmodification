@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+buildscript {
+    repositories {
+        flatDir dirs: "$projectDir/proguard_libs"
+    }
+    dependencies {
+        classpath ':proguard:'
+    }
+}
+
+task obfuscate(type: proguard.gradle.ProGuardTask) {
+    configuration "$projectDir/proguard.conf"
+    injars "$buildDir/libs/proguard-allowaccessmodification.jar"
+    outjars "$buildDir/libs/proguard-allowaccessmodification-obfuscated.jar"
+}
+
+task run(type: JavaExec) {
+   classpath = files('build/libs/proguard-allowaccessmodification-obfuscated.jar')
+   main = 'com.github.benji.proguard.Launcher'
+}
