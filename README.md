@@ -1,6 +1,8 @@
 # proguard-allowaccessmodification
 Proguard issue with protected resources when using -allowaccessmodification
 
+Reported at: https://sourceforge.net/p/proguard/bugs/711/
+
 Usage
 ----
  `$ gradle clean jar obfuscate run`
